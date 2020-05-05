@@ -1,0 +1,18 @@
+preprocess_parameter:
+  isClassifyOn: False
+  isRotationOn: False
+
+pse_evaluation_parameter:
+  checkpoint_path: "./assets/saved_model/pse/0219/model.ckpt-10340465"
+  gpu_list: "0"
+  no_write_images: False
+  #PSE realted parameters
+  distance: 0.15
+  max_side_len: 3000
+  seg_map_thresh: 0.9
+  min_area_thresh: 2
+
+ocr_evaluation_parameter:
+  gpu_list: [1, 0]
+  dictionary: "./assets/dictionary.txt"
+  saved_model: "./assets/saved_model/ocr/0219/best_accuracy.pth"
