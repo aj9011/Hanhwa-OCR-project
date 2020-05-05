@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='favicon/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon/favicon-16x16.png')}}">
+        <link rel="mask-icon" href="{{url_for('static', filename='favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <title>NakedReader App</title>
+        {{ dropzone.load() }}
+        {{ dropzone.style('border: 2px dashed #424F66; margin: 5%; min-height: 400px;') }}
+      
+        <script type='text/javascript'>
+            function post_goto(url, parm, target) {
+              var f = document.createElement('form');
+              var objs, value;
+                
+              for (var key in parm) {
+                value = parm[key];
+                objs = document.createElement('input');
+                objs.setAttribute('type', 'hidden');
+                objs.setAttribute('name', key);
+                objs.setAttribute('value', value);
+                f.appendChild(objs);
+              }
+
+              if (target)
+                f.setAttribute('target', target);
+
+              f.setAttribute('method', 'post');
+              f.setAttribute('action', url);
+              document.body.appendChild(f);
+              f.submit();
+            }
+            var redirect = function(url, method) {
+                var form = document.createElement('form');
+                form.method = method;
+                form.action = url;
+                form.submit();
+            };
+        </script>
+    </head>
+
+    <body> 
+        
+        <div class="header">
+            <div class="header_logo">
+                <a href="{{url_for('index')}}">
+                    <img class="header_img" src="{{url_for('static', filename='img/header.png')}}" alt width="180px">
+                </a>
+            </div>
+        </div>
+        
+        <div class="wrap">
+            <div class="content">
+                {{ dropzone.create(action_view='index') }}
+                <br><br>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        
+    </body>
+</html>

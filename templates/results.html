@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+ 
+{% block content %}
+    <div class="result-card">
+        <div class="result-card-image">
+            <img id="test" style='height: 100%; width: 100%; object-fit: contain'>
+        </div>
+        <div class="result-card-content">
+            {% if tables %}
+                {% for table in tables %}
+                    {{ table|safe }}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <br><br>
+    <script>
+        data = "{{ images[0] }}"
+        data = data.replace("b&#39;", "") //to get rid of start curly brace code 
+        data = data.replace("&#39;", "")  //to get rid of end curly bracecode 
+        document.getElementById("test").src = "data:image/png;base64," + data; // set src
+    </script>
+{% endblock %}
